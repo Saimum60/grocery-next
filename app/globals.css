@@ -15,3 +15,8 @@
 
 .swiper-button-next:hover,.swiper-button-prev:hover{@apply !bg-primary}
 .swiper-button-next:hover svg,.swiper-button-prev:hover svg{color: #fff !important;}
+
+.MuiTabs-list button{font-weight: 600 !important;}
+.MuiTabs-list .Mui-selected{@apply !text-primary;}
+.MuiTabs-indicator{background-color:#02B290 !important ;}
+.MutTabsScrollButton-root svg{font-size: 20px !important; width: 20px !important; height: 20px !important;}
