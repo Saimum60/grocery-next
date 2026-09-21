@@ -1,32 +1,68 @@
 "use client";
 
+import React, { useContext, useState } from "react";
 import { Tab, Tabs } from "@mui/material";
-import React from "react";
+import { ApiData } from "../contex/ApiContex";
 import ProductSlider from './ProductSlider'
 
 const PopularProduct = () => {
-  const [value, setValue] = React.useState(0);
 
+  // Categories
+  const categories = [
+    "All",
+    "beauty",
+    "fragrances",
+    "furniture",
+    "groceries",
+  ];
+
+  // Active tab
+  const [value, setValue] = useState(0);
+
+  const [activeTab, setActiveTab] = useState("All");
+
+  // Get API data from Context
+  const products = useContext(ApiData);
+
+  // Tab change
   const handleChange = (event, newValue) => {
     setValue(newValue);
+
+    setActiveTab(categories[newValue]);
   };
 
-  return (
-    <section className="bg-white py-4">
-      <div className="container">
-        <div className="flex items-center justify-center">
+  // Filter products
+  const filteredItems =
+    activeTab === "All"
+      ? products
+      : products.filter(
+          (item) => item.category === activeTab
+        );
 
-          <div className="col1 w-[30%]">
-            <h2 className="text-[20px] text-gray-800 font-[600]">
+  return (
+    <section className="bg-white py-6">
+
+      <div className="container mx-auto px-4">
+
+        {/* Header */}
+        <div className="flex items-center">
+
+          {/* Left */}
+          <div className="w-[30%]">
+
+            <h2 className="text-[24px] text-gray-800 font-bold">
               Popular Product
             </h2>
 
-            <p className="text-[16px] text-gray-500 font-[600]">
+            <p className="text-[16px] text-gray-500 font-semibold">
               Do not miss the current offers
             </p>
+
           </div>
 
-          <div className="col2 w-[70%] flex items-center justify-end">
+          {/* Right */}
+          <div className="w-[70%] text-2xl flex items-center justify-end">
+
             <Tabs
               value={value}
               onChange={handleChange}
@@ -34,22 +70,27 @@ const PopularProduct = () => {
               scrollButtons="auto"
               aria-label="product categories"
             >
-              <Tab label="Breads & Bakery" />
-              <Tab label="Breakfast & Dairy" />
-              <Tab label="Meats & Seafood" />
-              <Tab label="Fruits & Vegetables" />
-              <Tab label="Item Six" />
-              <Tab label="Item Seven" />
-              <Tab label="Breads & Bakery" />
-              <Tab label="Breakfast & Dairy" />
-             
+
+              {categories.map((category) => (
+
+                <Tab
+                  key={category}
+                  label={category}
+                />
+
+              ))}
+
             </Tabs>
+
           </div>
 
         </div>
 
-        <ProductSlider/>
+        {/* Products */}
+       <ProductSlider  products={filteredItems} />
+
       </div>
+
     </section>
   );
 };

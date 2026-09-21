@@ -1,29 +1,83 @@
-import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
+"use client";
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
-import ProductItem from './ProductItem'
+import React, { useContext } from "react";
+import Link from "next/link";
+import { CiStar } from "react-icons/ci";
+import { FaStar } from "react-icons/fa";
 
-const ProductSlider = () => {
+const ProductSlider = ({products}) => {
+  
+
   return (
-    <div className='productslidern py-5'>
-        <Swiper
-        spaceBetween={30}
-        navigation={true}
-        modules={[Pagination]}
-        className='mySwiper'
-      >
-            <SwiperSlide>
-                <ProductItem/>
-                </SwiperSlide>
-          
-          </Swiper>
-        
-    </div>
-  )
-}
+    <section className="py-10">
+      <div className="container mx-auto px-4">
 
-export default ProductSlider
+        <h2 className="text-3xl font-bold mb-6">
+          Latest Products
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className=" rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition"
+            >
+
+              {/* Product Image */}
+              <img
+                src={product.thumbnail}
+                alt={product.title}
+                className="w-full h-52 object-cover"
+              />
+
+              <div className="p-4">
+
+                {/* Product Title */}
+                <h3 className="text-lg font-bold line-clamp-1">
+                  {product.title}
+                </h3>
+
+                {/* Rating */}
+                <div className="flex text-yellow-500 mt-2">
+
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <span key={index}>
+                      {index < Math.round(product.rating) ? (
+                        <FaStar />
+                      ) : (
+                        <CiStar />
+                      )}
+                    </span>
+                  ))}
+
+                </div>
+
+                {/* Price */}
+                <div className="flex justify-between items-center mt-4">
+                  <span className="text-xl font-bold">
+                    ${product.price}
+                  </span>
+                </div>
+
+                {/* Button */}
+                <button className="w-full mt-4 text-primary border-primary border-2 py-2 rounded-md hover:bg-primary hover:text-white">
+                  <Link
+                    href="/"
+                    className="font-bold text-md"
+                  >
+                    Add to Cart
+                  </Link>
+                </button>
+
+              </div>
+            </div>
+          ))}
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProductSlider;

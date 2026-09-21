@@ -4,6 +4,7 @@ import CatSlider from './components/CatSlider'
 import PopularProduct from './components/PopularProduct'
 
 
+
 export default function Home() {
   return (
     <>
@@ -12,6 +13,8 @@ export default function Home() {
       <HomeSlider/>
       <CatSlider/>
       <PopularProduct/>
+      
+
 
     </div>
     
