@@ -8,6 +8,9 @@ const Contact = () => {
             <div className='grid grid-cols-4'>
                 <div className='text-2xl'>
                     <h1>Contact us</h1>
+                    <p>Classyshop-Mega super Store 507 union trade center France</p>
+                    <p>sales@yourcompany.com</p>
+                    <p>(+91)9876-543-210</p>
 
                 </div>
                 <div className='text-2xl'>
