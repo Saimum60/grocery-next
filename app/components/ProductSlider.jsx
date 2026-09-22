@@ -5,8 +5,8 @@ import Link from "next/link";
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 
-const ProductSlider = ({products}) => {
-  
+const ProductSlider = ({ products }) => {
+
 
   return (
     <section className="py-10">
@@ -61,19 +61,21 @@ const ProductSlider = ({products}) => {
                 </div>
 
                 {/* Button */}
-                <button className="w-full mt-4 text-primary border-primary border-2 py-2 rounded-md hover:bg-primary hover:text-white">
-                  <Link
-                    href="/"
-                    className="font-bold text-md"
-                  >
-                    Add to Cart
-                  </Link>
-                </button>
+                <Link
+                  href={`/productitem/${product.id}`}
+                  rel="noopener noreferrer"
+                  className="block text-center w-full text-primary border-primary border-2 py-2 rounded-md hover:bg-primary hover:text-white font-bold"
+                >
+                  Add to Cart
+                </Link>
 
               </div>
             </div>
           ))}
 
+        </div>
+        <div className="flex items-center justify-center pt-10">
+          <Link href={'/'} className=" border-2 border-primary text-primary text-2xl rounded-2xl px-8 py-2 hover:bg-primary hover:text-white">More</Link>
         </div>
       </div>
     </section>

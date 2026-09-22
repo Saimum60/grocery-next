@@ -6,6 +6,7 @@ import { MdOutlineShoppingBag } from 'react-icons/md'
 import Nav from './Nav';
 
 
+
 const Header = () => {
   return (
     
@@ -49,6 +50,7 @@ const Header = () => {
     </header>
 
     <Nav/>
+    
     </div>
   )
 }
